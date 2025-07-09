@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import config from './config'; // Import config file
 
 // Dynamically import only the required picture images
-const imageFiles = import.meta.glob('../assets/Picture*.png');
+const imageFiles = import.meta.glob('../assets/Picture*.{jpeg,png}');
 
 function Picture() {
   const navigate = useNavigate();

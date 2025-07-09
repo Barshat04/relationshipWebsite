@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import Carousel from './Carousel';
+// import Carousel from './Carousel'; // Remove this line
 import { ImageCard } from './ImageCard';
 import { ArrowLeft } from './icons';
 import { useNavigate } from 'react-router-dom';
 import config from './config'; // Import config file
 
 // Dynamically import only the required message images
-const imageFiles = import.meta.glob('../assets/MessageImage*.png');
+const imageFiles = import.meta.glob('../assets/MessageImage*.{jpg,png}');
 
 function Message() {
   const navigate = useNavigate();
@@ -42,20 +42,22 @@ function Message() {
   return (
     <div className="min-h-screen bg-black/20 flex flex-col items-center justify-center">
       <div className="w-[90%] max-w-[400px]">
-        <h1 className="text-2xl sm:text-2xl font-bold -mb-4 drop-shadow-lg text-white text-center">
+        <h1 className="text-2xl sm:text-2xl font-bold mb-4 drop-shadow-lg text-white text-center">
           {config.messageTitle}
         </h1>
-        <Carousel>
-          {pictures.map(({ Image, title, description }, index) => (
-            <ImageCard
-              key={index}
-              imageUrl={Image}
-              altText={`Message image ${index + 1}`}
-              title={title}
-              description={description}
-            />
-          ))}
-        </Carousel>
+
+        {/* Show only one image card */}
+        {pictures.length > 0 && (
+          // <Carousel> // Remove the Carousel wrapper
+          <ImageCard
+            key={0}
+            imageUrl={pictures[0]?.Image} // Only pass the first image
+            altText={`Message image 1`}
+            title={pictures[0]?.title || 'No Title'}
+            description={pictures[0]?.description || 'No Description'}
+          />
+          // </Carousel> // Remove the closing Carousel tag
+        )}
 
         <div className="flex justify-center w-full mt-12">
           <button
