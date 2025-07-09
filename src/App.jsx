@@ -1,11 +1,11 @@
-
-import React from 'react'
+import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import {Closing, Letter,Passcode,Question,Recap,Timer,Message,Music,Picture} from './components'
-import './index.css'
+import { Closing, Letter, Passcode, Question, Recap, Timer, Message, Music, Picture } from './components';
+import './index.css';
+
 function App() {
   return (
-    <Router>
+    <Router basename="/relationshipWebsite"> {/* Use the repo name */}
       <Routes>
         <Route path="/" element={<Passcode />} />
         <Route path="/question" element={<Question />} />
@@ -18,7 +18,7 @@ function App() {
         <Route path="/closing" element={<Closing />} />
       </Routes>
     </Router>
-  )
+  );
 }
 
-export default App
+export default App;
